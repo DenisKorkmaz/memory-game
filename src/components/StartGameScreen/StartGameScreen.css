@@ -1,0 +1,28 @@
+.startGameCard {
+  width: 327px;
+  height: 386px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: #FCFCFC;;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+p {
+  color: #7191a5;
+  text-align: left;
+}
+
+h1 {
+  color: #fcfcfc;
+  text-align: center;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+}
+
+

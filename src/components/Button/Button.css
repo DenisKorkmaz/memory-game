@@ -1,0 +1,46 @@
+
+.first-btn {
+    background-color: #BCCED9;
+    color: white; 
+  }
+  
+
+  .second-btn {
+    background-color: #304859;
+    color: white; 
+  }
+  button {
+    width: 134px;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: 26px;
+    background: #bcced9;
+    border-color: transparent;
+    margin: 5px;
+    color: #FCFCFC;
+    text-align: center;
+    font-family: Atkinson Hyperlegible;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;  }  
+
+  .hoverable:hover{
+    background-color: #304859;
+  }
+
+  .startButton {
+    width: 279px;
+    height: 48px;
+    flex-shrink: 0;
+    border-radius: 26px;
+    background: #fda214;
+    color: #fcfcfc;
+    text-align: center;
+    font-family: Atkinson Hyperlegible;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-top: 25px;
+  }

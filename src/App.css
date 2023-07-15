@@ -1,0 +1,23 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+  background: #152938;
+  font-family: 'Atkinson Hyperlegible', sans-serif;
+  color: #FCFCFC;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 45px;
+  background: #152938;
+  margin: 80px 24px 116px 24px;
+}
+
+
