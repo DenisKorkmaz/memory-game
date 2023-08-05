@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "../Card/Card.css";
+import Image from "next/image";
 
 import Image1 from "../../../assets/alien-2-svgrepo-com.svg";
 import Image2 from "../../../assets/alien-obduction-svgrepo-com.svg";
@@ -99,7 +99,12 @@ export default function CardContainer() {
     <div className="card-container">
       {cards.map((card, index) => (
         <div key={index} className="card" onClick={() => flipCard(index)}>
-          <img src={card.flipped ? card.image : cardBack} alt="card" />
+          <Image
+            src={card.flipped ? card.image : cardBack}
+            alt="card"
+            width={50}
+            height={50}
+          />
         </div>
       ))}
     </div>

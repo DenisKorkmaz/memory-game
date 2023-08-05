@@ -1,4 +1,3 @@
-import "./Button.css";
 import { useState, useEffect } from "react";
 
 export default function Button({

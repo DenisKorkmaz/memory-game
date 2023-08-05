@@ -1,7 +1,6 @@
 import { useState } from "react";
-import "./StartGameScreen.css";
 import Button from "../Button/Button";
-import { Link } from "react-router-dom";
+import Link from 'next/link';
 
 export default function StartGameScreen() {
   const [activeTheme, setActiveTheme] = useState(null);
@@ -57,8 +56,8 @@ export default function StartGameScreen() {
             active={activeGridSize === "6x6"}
           />
         </div>
-        <Link to="/GameBoard">
-          <Button buttonName="Start Game" className="startButton" />
+        <Link href="/gameboard">
+          <Button buttonName="Start Game" className={"startButton"} />
         </Link>
       </div>
     </>
