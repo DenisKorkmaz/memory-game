@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import PropTypes from 'prop-types';
 
 export default function Button({
   buttonName,
@@ -12,7 +13,6 @@ export default function Button({
   useEffect(() => {
     setActiveButton(active);
   }, [active]);
-  
 
   const handleClick = () => {
     if (onClick) {
@@ -34,3 +34,11 @@ export default function Button({
     </button>
   );
 }
+
+Button.propTypes = {
+  buttonName: PropTypes.string.isRequired,
+  className: PropTypes.string,
+  hoverable: PropTypes.bool,
+  onClick: PropTypes.func,
+  active: PropTypes.bool,
+};
