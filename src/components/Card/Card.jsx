@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import PropTypes from 'prop-types';
+
 
 import Image1 from "../../../assets/alien-2-svgrepo-com.svg";
 import Image2 from "../../../assets/alien-obduction-svgrepo-com.svg";
@@ -82,7 +84,8 @@ export default function CardContainer({ onPairFound }) {
         setFlippedIndices([]);
       }
     }
-  }, [flippedIndices]);
+  }, [flippedIndices, cards, onPairFound]);
+
 
   const flipCard = (index) => {
     if (flippedIndices.length === 2) {
@@ -111,3 +114,7 @@ export default function CardContainer({ onPairFound }) {
     </div>
   );
 }
+
+CardContainer.propTypes = {
+  onPairFound: PropTypes.func.isRequired,
+};
