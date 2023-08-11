@@ -53,7 +53,7 @@ function shuffleArray(array) {
   return shuffledArray;
 }
 
-export default function CardContainer() {
+export default function CardContainer({ onPairFound }) {
   const [cards, setCards] = useState([]);
   const [flippedIndices, setFlippedIndices] = useState([]);
 
@@ -78,6 +78,7 @@ export default function CardContainer() {
           setFlippedIndices([]);
         }, 1500);
       } else {
+        onPairFound();
         setFlippedIndices([]);
       }
     }
