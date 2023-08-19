@@ -1,9 +1,8 @@
 import { useState } from "react";
 import Button from "../Button/Button";
-import Link from 'next/link';
+import Link from "next/link";
 
 export default function StartGameScreen() {
-  const [activeTheme, setActiveTheme] = useState(null);
   const [activePlayers, setActivePlayers] = useState(null);
   const [activeGridSize, setActiveGridSize] = useState(null);
 
@@ -11,21 +10,6 @@ export default function StartGameScreen() {
     <>
       <h1>Memory</h1>
       <div className="startGameCard">
-        <div>
-          <p>Select Theme</p>
-          <Button
-            hoverable
-            buttonName="Numbers"
-            onClick={() => setActiveTheme("Numbers")}
-            active={activeTheme === "Numbers"}
-          />
-          <Button
-            hoverable
-            buttonName="Icons"
-            onClick={() => setActiveTheme("Icons")}
-            active={activeTheme === "Icons"}
-          />
-        </div>
         <div>
           <p>Number of Players</p>
           <Button
@@ -56,7 +40,12 @@ export default function StartGameScreen() {
             active={activeGridSize === "6x6"}
           />
         </div>
-        <Link href="/gameboard">
+        <Link
+          href={{
+            pathname: "/gameboard",
+            query: { players: activePlayers, gridSize: activeGridSize || "4x4" }
+          }}
+        >
           <Button buttonName="Start Game" className={"startButton"} />
         </Link>
       </div>

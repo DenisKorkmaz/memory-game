@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import PropTypes from 'prop-types';
-
-
+import PropTypes from "prop-types";
 import Image1 from "../../../assets/alien-2-svgrepo-com.svg";
 import Image2 from "../../../assets/alien-obduction-svgrepo-com.svg";
 import Image3 from "../../../assets/astronaut-dog-svgrepo-com.svg";
@@ -55,16 +53,25 @@ function shuffleArray(array) {
   return shuffledArray;
 }
 
-export default function CardContainer({ onPairFound }) {
+export default function CardContainer({ onPairFound, gridSize }) {
   const [cards, setCards] = useState([]);
   const [flippedIndices, setFlippedIndices] = useState([]);
 
   useEffect(() => {
-    let doubleCards = CardData.concat(CardData);
+    let selectedCards = CardData;
+
+    if (gridSize === "4x4") {
+      selectedCards = selectedCards.slice(0, 8);
+    } else if (gridSize === "6x6") {
+      selectedCards = selectedCards.slice(0, 18);
+    }
+
+    let doubleCards = selectedCards.concat(selectedCards).map((card) => {
+      return { ...card, flipped: false };
+    });
     doubleCards = shuffleArray(doubleCards);
-    doubleCards = doubleCards.map((card) => ({ ...card, flipped: false }));
     setCards(doubleCards);
-  }, []);
+  }, [gridSize]);
 
   useEffect(() => {
     if (flippedIndices.length === 2) {
@@ -86,28 +93,53 @@ export default function CardContainer({ onPairFound }) {
     }
   }, [flippedIndices, cards, onPairFound]);
 
-
   const flipCard = (index) => {
-    if (flippedIndices.length === 2) {
+    if (flippedIndices.length === 2 || cards[index].flipped) {
       return;
     }
 
     const newCards = [...cards];
-    newCards[index].flipped = !newCards[index].flipped;
+    newCards[index].flipped = true;
     setCards(newCards);
 
     setFlippedIndices((prev) => [...prev, index]);
   };
 
+  const containerStyles = {
+    display: "grid",
+    gap: "10px",
+    margin: "20px",
+    ...(gridSize === "4x4" ? { gridTemplateColumns: "repeat(4, 1fr)" } : {}),
+    ...(gridSize === "6x6" ? { gridTemplateColumns: "repeat(6, 1fr)" } : {}),
+  };
+
+  const cardStyle = {
+    cursor: "pointer",
+    backgroundColor: "#eee",
+    position: "relative",
+    aspectRatio: "1 / 1",
+    overflow: "hidden",
+    border: "1px solid #ccc",
+    borderRadius: "10px",
+  };
+
+  const imageStyle = {
+    maxWidth: "100%",
+    maxHeight: "100%",
+    display: "block",
+    margin: "auto",
+  };
+
   return (
-    <div className="card-container">
+    <div style={containerStyles} data-grid={gridSize}>
       {cards.map((card, index) => (
-        <div key={index} className="card" onClick={() => flipCard(index)}>
+        <div key={index} style={cardStyle} onClick={() => flipCard(index)}>
           <Image
             src={card.flipped ? card.image : cardBack}
             alt="card"
             width={50}
             height={50}
+            style={imageStyle}
           />
         </div>
       ))}
@@ -117,4 +149,5 @@ export default function CardContainer({ onPairFound }) {
 
 CardContainer.propTypes = {
   onPairFound: PropTypes.func.isRequired,
+  gridSize: PropTypes.string.isRequired,
 };
